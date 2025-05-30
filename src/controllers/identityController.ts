@@ -21,52 +21,32 @@ export class IdentityController {
         return;
       }
 
-      // Basic email validation
-      if (email && !this.isValidEmail(email)) {
-        res.status(400).json({
-          error: 'Invalid email format',
-        });
-        return;
+      // Convert phoneNumber to string if it exists
+      let phoneStr: string | undefined;
+      if (phoneNumber !== undefined && phoneNumber !== null) {
+        phoneStr = phoneNumber.toString();
       }
 
-      // Validate phone number type and format
-      if (phoneNumber !== undefined && phoneNumber !== null) {
-        if (typeof phoneNumber !== 'number') {
-          res.status(400).json({
-            error: 'phoneNumber must be a number',
-          });
-          return;
-        }
-        if (!this.isValidPhoneNumber(phoneNumber)) {
-          res.status(400).json({
-            error: 'Invalid phone number format',
-          });
-          return;
-        }
-      }      // Convert phone number to string for database storage
-      const input: IdentifyRequest = {
+      // Prepare request object with properly typed data
+      const identifyRequest: IdentifyRequest = {
         email: email || undefined,
-        phoneNumber: phoneNumber !== undefined && phoneNumber !== null ? String(phoneNumber) : undefined
+        phoneNumber: phoneStr,
       };
 
-      const result = await this.identityService.identifyContact(input);
+      // Process request
+      const result = await this.identityService.identifyContact(identifyRequest);
       res.status(200).json(result);
     } catch (error) {
-      console.error('Error in identify endpoint:', error);
+      // Log error but don't expose details to client
+      if (error instanceof Error) {
+        console.error('Error in identify endpoint:', error.message);
+      } else {
+        console.error('Unknown error in identify endpoint');
+      }
       
       res.status(500).json({
         error: 'Internal server error',
-        message: error instanceof Error ? error.message : 'Unknown error',
       });
     }
-  }
-
-  private isValidEmail(email: string): boolean {
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return emailRegex.test(email);
-  }  private isValidPhoneNumber(phoneNumber: number): boolean {
-    // Convert to string and check length (allowing shorter numbers for testing)
-    const phoneStr = phoneNumber.toString();
-    return phoneStr.length >= 1;
   }
 }
