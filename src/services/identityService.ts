@@ -47,7 +47,7 @@ export class IdentityService {
     email?: string,
     phoneNumber?: string
   ): Promise<Contact[]> {
-    const whereConditions = [];
+    const whereConditions: { email?: string; phoneNumber?: string }[] = [];
 
     if (email) {
       whereConditions.push({ email });
