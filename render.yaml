@@ -1,6 +1,6 @@
 services:
   - type: web
-    name: bitespeed-identity-reconciliation
+    name: bitespeed-identity-reconciliation-megha
     env: node
     plan: free
     buildCommand: npm install && npm run build && npm run db:generate
@@ -8,6 +8,8 @@ services:
     envVars:
       - key: NODE_ENV
         value: production
+      - key: PORT
+        value: 3000
       - key: DATABASE_URL
         fromDatabase:
           name: bitespeed-db
