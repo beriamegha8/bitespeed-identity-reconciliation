@@ -8,7 +8,7 @@ import { IdentityController } from './controllers/identityController';
 dotenv.config();
 
 const app = express();
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 8000;
 
 // Initialize controller
 const identityController = new IdentityController();
