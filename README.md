@@ -2,6 +2,13 @@
 
 A backend service for tracking and reconciling customer identities across multiple purchases by linking contact information (email and phone numbers).
 
+##  Live API end point
+
+The API is live at:
+```bash
+https://bitespeed-identity-reconciliation-megha.onrender.com/
+```
+
 ## 🚀 Features
 
 - **Identity Reconciliation**: Links customer contacts when same email/phone appears
@@ -23,7 +30,7 @@ A backend service for tracking and reconciling customer identities across multip
 ### 1. Clone and Install
 
 ```bash
-git clone <your-repo-url>
+git clone https://github.com/beriamegha8/bitespeed-identity-reconciliation
 cd bitespeed-identity-reconciliation
 npm install
 ```
