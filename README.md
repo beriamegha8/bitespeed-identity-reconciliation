@@ -311,17 +311,11 @@ prisma/
 4. Push to branch: `git push origin feature/new-feature`
 5. Submit Pull Request
 
-## 📄 License
-
-This project is licensed under the MIT License.
-
----
-
 ## 🚀 Quick Start Summary
 
 ```bash
 # 1. Clone and install
-git clone <repo-url> && cd bitespeed-identity-reconciliation && npm install
+git clone https://bitespeed-identity-reconciliation-megha.onrender.com/ && cd bitespeed-identity-reconciliation && npm install
 
 # 2. Setup environment
 cp .env.example .env
