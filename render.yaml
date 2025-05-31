@@ -3,8 +3,8 @@ services:
     name: bitespeed-identity-reconciliation-megha
     env: node
     plan: free
-    buildCommand: npm install --include=dev && npm run build && npm run db:generate
-    startCommand: npm run db:migrate && npm start
+    buildCommand: npm install --include=dev && npm run build
+    startCommand: npm run db:generate && npm run db:migrate && npm start
     envVars:
       - key: NODE_ENV
         value: production
@@ -15,9 +15,3 @@ services:
           name: bitespeed-db
           property: connectionString
     autoDeploy: false
-
-databases:
-  - name: bitespeed-db
-    databaseName: bitespeed_identity
-    user: bitespeed_user
-    plan: free
